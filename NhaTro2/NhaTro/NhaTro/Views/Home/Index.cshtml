@@ -1,0 +1,53 @@
+﻿@model List<PhongTro>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+ <h2 style="text-align:center; font-family:Arial, sans-serif;">Thông tin Phòng Trọ</h2>
+
+<div style="overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; font-family: Arial, sans-serif;">
+        <thead>
+            <tr style="background-color: #f2f2f2; text-align: center;">
+                <th style="padding: 8px; border: 1px solid #ddd;">ID</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Tên Phòng</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Tiền Phòng</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Tiền Điện</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Tiền Nước</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Tiền Rác</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Số Điện Cũ</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Số Điện Mới</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Số Nước Cũ</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Số Nước Mới</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Tháng</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Năm</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @{
+                foreach(var item in Model)
+                {
+                    <tr style="text-align: center;">
+                        <td style="padding: 8px; border: 1px solid #ddd;">@item.Id</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">@item.TenPhong</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">@item.TienPhong</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">@item.SoDienCu</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">@item.SoNuocCu</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">50000</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">30000</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">100</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">150</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">20</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">30</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">12</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">2024</td>
+                    </tr>
+                }
+            }
+            <!-- Dữ liệu bảng sẽ được thêm vào đây -->
+           
+            <!-- Thêm các dòng dữ liệu khác vào đây -->
+        </tbody>
+    </table>
+</div>
