@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NhaTro.Models
 {
-    [Table("PhongTro")]
-    public class PhongTro
+    [Table("PhongTroTheoThang")]
+    public class PhongTroTheoThang
     {
         [Key]
         [StringLength(36)]
@@ -25,5 +25,6 @@ namespace NhaTro.Models
 
         public int? Thang { get; set; }
         public int? Nam { get; set; }
+        public bool DaNhan { get; set; } = false; // Default value for DaNhan
     }
 }

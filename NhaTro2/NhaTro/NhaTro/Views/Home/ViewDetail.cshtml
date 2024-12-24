@@ -1,0 +1,69 @@
+﻿@model List<PhongTroTheoThang>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<div class="container mt-4">
+    <button onclick="QuayLai()" type="button" class="btn btn-success">Quay Lai</button>
+
+    <h2>@Model[0].TenPhong</h2>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Tiền Phòng</th>
+                <th>Tiền Điện</th>
+                <th>Tiền Nước</th>
+                <th>Tiền Rác</th>
+                <th>Số Điện Cũ</th>
+                <th>Số Điện Mới</th>
+                <th>Số Nước Cũ</th>
+                <th>Số Nước Mới</th>
+                <th>Tháng</th>
+                <th>Năm</th>
+                <th>Action</th> <!-- Thêm cột Action -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="@((item.DaNhan == true) ? "bg-light" : "bg-danger")">
+                    <!-- Màu nhạt cho DaNhan == true, màu đỏ cho DaNhan == false -->
+                    <td>@item.TienPhong?.ToString("N0")</td>
+                    <td>@item.TienDien?.ToString("N0")</td>
+                    <td>@item.TienNuoc?.ToString("N0")</td>
+                    <td>@item.TienRac?.ToString("N0")</td>
+                    <td>@item.SoDienCu</td>
+                    <td>@item.SoDienMoi</td>
+                    <td>@item.SoNuocCu</td>
+                    <td>@item.SoNuocMoi</td>
+                    <td>@item.Thang</td>
+                    <td>@item.Nam</td>
+                    <td>
+                        @if (item.DaNhan == false)
+                        {
+                            <!-- Chỉ hiển thị nút xóa nếu DaNhan == false -->
+                            <button class="btn btn-danger" onclick="deleteItem('@item.Id', '@item.TenPhong')">Xóa</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Form nhập số điện, số nước và tính tiền -->
+    <div class="mt-4">
+        <h4>Nhập Số Điện và Số Nước Tháng Này</h4>
+       
+            <div class="mb-3">
+                <label for="soDienThangNay" class="form-label">Số Điện Tháng Này</label>
+                <input type="number" class="form-control" id="soDienThangNay" placeholder="Nhập số điện tháng này">
+            </div>
+            <div class="mb-3">
+                <label for="soNuocThangNay" class="form-label">Số Nước Tháng Này</label>
+                <input type="number" class="form-control" id="soNuocThangNay" placeholder="Nhập số nước tháng này">
+            </div>
+        <button onclick="TinhTien('@Model[0].TenPhong')" type="button" class="btn btn-primary">Tính Tiền</button>
+     
+    </div>
+</div>
+
