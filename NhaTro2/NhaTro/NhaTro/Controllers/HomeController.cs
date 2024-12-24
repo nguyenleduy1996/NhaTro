@@ -22,6 +22,8 @@ namespace NhaTro.Controllers
         public IActionResult RenderListRoom()
         {
             var model = _context.DanhSachPhongTro.ToList();
+            var modelOk = _context.PhongTroTheoThangs.Where(x=>x.DaNhan == false).ToList();
+            ViewBag.modelOk = modelOk;
             return View(model);
         }
         public IActionResult ViewDetail(string TenPhong)
@@ -89,6 +91,23 @@ namespace NhaTro.Controllers
 
             // Trả về kết quả
             return Json(new { success = true, message = "Xóa thành công" });
+        }
+        public IActionResult checkOK(string Id)
+        {
+            var room = _context.DanhSachPhongTro.Where(x=>x.Id ==Id).FirstOrDefault();
+            var roomChuaDong = _context.PhongTroTheoThangs.Where(x=>x.TenPhong == room.TenPhong && x.DaNhan == false).ToList();
+            if(roomChuaDong.Count < 1)
+            {
+                return Json(new { success = false, message = "Phong Này Chưa Ghi Điện Nước Gì Hết" });
+            }
+
+            foreach(var item in roomChuaDong)
+            {
+                item.DaNhan = true;
+            }
+            _context.SaveChanges();
+
+            return Json(new { success = true, message = "OK" });
         }
         public IQueryable<PhongTroTheoThang> GetPhongTroPreviousMonth()
         {

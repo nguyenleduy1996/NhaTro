@@ -2,18 +2,22 @@
 @{
     ViewBag.Title = "Index";
     Layout = null;
+    List<PhongTroTheoThang> ModelOK = ViewBag.modelOK;
 }
 @foreach (var room in Model)
 {
+    var roomOK = ModelOK.Where(x => x.TenPhong == room.TenPhong).FirstOrDefault();
+    var cardClass = roomOK != null ? "card bg-danger text-white" : "card";
     <div class="col-md-4 mb-4">
-        <div class="card">
+        <div class="@cardClass">
             <div class="card-body">
                 <h5 class="card-title">Phòng @room.TenPhong</h5>
                 <p class="card-text">Giá: @String.Format("{0:N0}", room.Gia) VND</p>
-                <button class="btn btn-warning btn-sm me-2" onclick="editRoom(@room.Id)">Đã Thu Tháng Này</button>
-                <button class="btn btn-danger btn-sm" onclick="ViewDetail('@room.TenPhong')">Detail</button>
+                <button class="btn btn-success btn-sm me-2" onclick="checkOK('@room.Id')">Đã Thu Tháng Này</button>
+                <button class="btn btn-primary btn-sm" onclick="ViewDetail('@room.TenPhong')">Detail</button>
             </div>
         </div>
     </div>
 }
+
 

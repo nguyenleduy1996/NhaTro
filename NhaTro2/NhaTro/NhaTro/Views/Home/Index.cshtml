@@ -69,6 +69,24 @@
             }
         });
     }
+    function checkOK(Id){
+        var _url = '@Url.Action("checkOK", "Home")'; // Thay "Home" bằng controller tương ứng
+        $.ajax({
+            url: _url,
+            method: 'POST',
+            data: { Id: Id },
+            success: function (data) {
+                if (data.success) {
+                    RenderListRoom()
+                }else{
+                    alert(data.message)
+                }
+            },
+            error: function () {
+                alert('Lỗi khi tải danh sách phòng trọ!');
+            }
+        });
+    }
     function QuayLai(){
         RenderListRoom();
     }
