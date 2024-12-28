@@ -1,4 +1,4 @@
-﻿<div class="container mt-5">
+﻿<div class="container mt-5" id="ContainerCha">
     <h1 class="text-center mb-4">Quản Lý Phòng Trọ</h1>
 
     <!-- Danh sách phòng trọ -->
@@ -89,6 +89,20 @@
     }
     function QuayLai(){
         RenderListRoom();
+    }
+    function XuatBuid(Id, TenPhong) {
+        var _url = '@Url.Action("XuatBuid", "Home")'; // Thay "Home" bằng controller tương ứng
+        $.ajax({
+            url: _url,
+            method: 'POST',
+            data: { Id: Id },
+            success: function (data) {
+                $('#ContainerCha').html(data);
+            },
+            error: function () {
+                alert('Lỗi khi tải danh sách phòng trọ!');
+            }
+        });
     }
     // Gọi hàm để render danh sách phòng ngay khi trang được tải
     $(document).ready(function () {

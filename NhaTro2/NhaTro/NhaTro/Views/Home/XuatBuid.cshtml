@@ -1,0 +1,65 @@
+﻿@model PhongTroTheoThang
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+
+    var soDienSuDung = Model.SoDienMoi - Model.SoDienCu;
+    var soNuocSuDung = Model.SoNuocMoi - Model.SoNuocCu;
+    var tienDien = soDienSuDung * 3500;
+    var tienNuoc = soNuocSuDung * 14000;
+    var tongTien = Model.TienPhong + tienDien + tienNuoc + Model.TienRac;
+
+    string DinhDangTien(double? soTien) => soTien?.ToString("N0") + " VND";
+}
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header text-center">
+            <h3>Hóa Đơn Thanh Toán</h3>
+        </div>
+        <div class="card-body">
+            <div class="mb-3">
+                <label class="form-label fw-bold">Tên Phòng:</label>
+                <span>Phòng @Model.TenPhong</span>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">Tiền Phòng:</label>
+                    <span>@DinhDangTien(Model.TienPhong)</span>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">Số Điện Sử Dụng:</label>
+                    <span>@soDienSuDung kWh</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">Số Nước Sử Dụng:</label>
+                    <span>@soNuocSuDung m³</span>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">Tiền Điện:</label>
+                    <span>@DinhDangTien(tienDien)</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">Tiền Nước:</label>
+                    <span>@DinhDangTien(tienNuoc)</span>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">Tiền Rác:</label>
+                    <span>@DinhDangTien(Model.TienRac)</span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Tổng Tiền:</label>
+                <span class="text-danger fw-bold">@DinhDangTien(tongTien)</span>
+            </div>
+            <div class="text-center mt-4">
+                <p class="fw-bold">Quét mã QR để thanh toán:</p>
+                <img src="/img/Screenshot%202024-12-28%20113008.png" alt="QR Code" class="img-fluid" style="max-width: 150px; height: auto;">
+            </div>
+        </div>
+    </div>
+</div>

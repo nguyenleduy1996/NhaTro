@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NhaTro.Data;
 using NhaTro.Models;
 using System.Diagnostics;
@@ -128,6 +129,12 @@ namespace NhaTro.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+        public ActionResult XuatBuid(string Id)
+        {
+            var model = _context.PhongTroTheoThangs.Where(x=>x.Id == Id).FirstOrDefault();
+
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
